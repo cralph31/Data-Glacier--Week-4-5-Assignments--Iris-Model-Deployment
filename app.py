@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, render_template, request
 import pickle
+import os
 
 app = Flask(__name__)
 
@@ -24,4 +25,5 @@ def predict():
     return render_template('result.html', prediction=prediction)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
